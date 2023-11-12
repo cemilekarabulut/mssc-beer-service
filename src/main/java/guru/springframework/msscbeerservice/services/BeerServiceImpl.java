@@ -76,4 +76,11 @@ public class BeerServiceImpl implements BeerService {
                 PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
                 beerPage.getTotalElements());
     }
+
+    @Override
+    @Cacheable(cacheNames = "beerUpcCache", key ="#upc")
+    public BeerDto getByUpc(String upc) {
+        System.out.println("upc called");
+        return beerMapper.beerToBeerDto(beerRepository.findByUpc(upc));
+    }
 }
