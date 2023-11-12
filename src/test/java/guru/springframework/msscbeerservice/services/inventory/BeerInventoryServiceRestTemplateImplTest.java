@@ -11,6 +11,7 @@ import java.util.UUID;
 @Disabled // utility for manual testing
 @SpringBootTest
 class BeerInventoryServiceRestTemplateImplTest {
+    private final UUID BEER_1_UUID = UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb");
 
     @Autowired
     BeerInventoryService beerInventoryService;
@@ -22,7 +23,7 @@ class BeerInventoryServiceRestTemplateImplTest {
 
     @Test
     void getOnhandInventory() {
-        Integer qoh = beerInventoryService.getOnhandInventory(UUID.fromString("cd4be481-c933-46a7-a069-f09521948b9e"));
+        Integer qoh = beerInventoryService.getOnhandInventory(BEER_1_UUID);
         System.out.println(qoh);
     }
 }
