@@ -1,8 +1,10 @@
 package guru.springframework.msscbeerservice.domain;
 
+import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -23,6 +25,7 @@ public class Beer {
 
     @Id
     @GeneratedValue(generator = "UUID")
+    @Type(type="uuid-char")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
     private UUID id;
@@ -38,7 +41,9 @@ public class Beer {
     private Timestamp lastModifiedDate;
 
     private String beerName;
-    private String beerStyle;
+
+    @Enumerated(EnumType.STRING)
+    private BeerStyleEnum beerStyle;
 
     @Column(unique = true)
     private String upc;
